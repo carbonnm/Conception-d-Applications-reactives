@@ -1,8 +1,32 @@
 scene smartrpgScene = {
-    size = (300, 168).
-    layers = { top }.
+    size = (1380, 920).
+    layers = { background }.
 
-    background = loadImage(Images/table.jpeg).
+    background = loadImage(Images/table.jpg).
+    pion1_img = loadImage(Images/pion1.png).
+    pion2_img = loadImage(Images/pion2.png).
+    pion3_img = loadImage(Images/pion3.png).
+
+    widget pion1 = {
+        display = { pion1_img }
+        init = { wdL = top. }
+    }
+
+    widget pion2 = {
+        display = { pion2_img }
+        init = { wdL = top. }
+    }
+
+    widget pion3 = {
+        display = { pion3_img }
+        init = { wdL = top. }
+    }
 }. 
 
-proc Init = draw_scene(smartrpgScene).
+proc Init = draw_scene(smartrpgScene);
+            place_at(pion1, smartrpgScene, 100, 50);
+            place_at(pion2, smartrpgScene, 100, 400);
+            place_at(pion3, smartrpgScene, 500, 50);
+            show(pion1, smartrpgScene);
+            show(pion2, smartrpgScene);
+            show(pion3, smartrpgScene).
