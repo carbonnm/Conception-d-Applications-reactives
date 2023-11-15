@@ -1,0 +1,8 @@
+scene smartrpgScene = {
+    size = (300, 168).
+    layers = { top }.
+
+    background = loadImage(Images/table.jpeg).
+}. 
+
+proc Init = draw_scene(smartrpgScene).
