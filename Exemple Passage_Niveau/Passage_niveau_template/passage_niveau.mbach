@@ -1,0 +1,54 @@
+eset Quartiers = { gh, pnh, dh, cg, cd, gb, pnb, db }.
+
+eqn x_coord(gh) = 336. y_coord(gh) = 106.
+    x_coord(pnh) = 533. y_coord(pnh) = 106.    
+    x_coord(dh) = 694. y_coord(dh) = 106.    
+    x_coord(cg) = 150. y_coord(cg) = 290.    
+    x_coord(cd) = 1023. y_coord(cd) = 267.    
+    x_coord(gb) = 336. y_coord(gb) = 645.    
+    x_coord(pnb) = 530. y_coord(pnb) = 645.    
+    x_coord(db) = 731. y_coord(db) = 645.    
+    next(gh) = pnh. next(pnh) = dh. next(dh) = cd. next(cd) = db.
+    next(db) = pnb. next(pnb) = gb. next(gb) = cg. next(cg) = gh.
+
+scene trainScene = {
+
+    size = (1200,800).
+    layers = { top }.
+
+    background = loadImage(Images/circuit_final.png).
+
+    locomotive_gauche_img = loadImage(Images/locomotive_gauche.png).
+    locomotive_droite_img = loadImage(Images/locomotive_droite.png).
+    locomotive_haut_img = loadImage(Images/locomotive_haut.png).
+    locomotive_bas_img = loadImage(Images/locomotive_bas.png).
+
+    widget locomotive = {
+       attributes = { position in Quartiers. }
+       display = {
+          position = gh -> locomotive_droite_img.
+          position = pnh -> locomotive_droite_img.	  
+          position = dh -> locomotive_droite_img.
+          position = cg -> locomotive_haut_img.
+          position = cd -> locomotive_bas_img.
+          position = gb -> locomotive_gauche_img.
+          position = pnb -> locomotive_gauche_img.
+          position = db -> locomotive_gauche_img.
+       }
+       init = {
+          wdL = top.
+	  position = dh.
+       }
+    }
+
+}.
+
+proc Locomotive(p:Quartiers) =
+        place_at(locomotive,trainScene,x_coord(next(p)),y_coord(next(p)));
+	att(position,locomotive,trainScene,next(p));
+	Locomotive(next(p)).
+
+     Init = draw_scene(trainScene);
+            place_at(locomotive,trainScene,x_coord(dh),y_coord(dh));
+	    show(locomotive,trainScene);
+	    Locomotive(dh).

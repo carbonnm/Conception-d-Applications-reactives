@@ -1,0 +1,37 @@
+eset Segments = {a1, a2, a3, cleft, cright,
+                 d1, d2, d3, d4, d5, d6, d7,
+		 b1, b2, b3, out}.
+
+eqn x_coord(out) = 1022. y_coord(out) = 325.
+    x_coord(a1) = 885. y_coord(a1) = 325.
+    x_coord(a2) = 765. y_coord(a2) = 325.
+    x_coord(a3) = 650. y_coord(a3) = 325.
+
+    next(out) = a1.
+    next(a1) = a2. next(a2) = a3. next(a3) = cleft.
+
+    
+scene raScene = {
+
+    size = (1200,526).
+    layers = { top }.
+
+    background = loadImage(Images/round_about.png).
+
+    voiture_img =  loadImage(Images/voiture.png).
+
+    widget voiture = {
+       display = { voiture_img }
+       init = { wdL = top. }
+    }
+
+}.
+
+proc Voiture(s:Segments) =
+        move_to(voiture,raScene,x_coord(next(s)),y_coord(next(s)));
+	Voiture(next(s)).
+
+     Init = draw_scene(raScene);
+            place_at(voiture,raScene,x_coord(out),y_coord(out));
+	    show(voiture,raScene);
+	    Voiture(out).

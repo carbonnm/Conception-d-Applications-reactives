@@ -1,0 +1,7 @@
+eset Segments = {a1, a2, a3, cleft, cright,
+                 d1, d2, d3, d4, d5, d6, d7,
+		 b1, b2, b3 }.
+
+eqn x_coord(a1) = . y_coord(a1) = .
+    x_coord(a2) = . y_coord(a2) = .
+    x_coord(a3) = . y_coord(a3) = .    

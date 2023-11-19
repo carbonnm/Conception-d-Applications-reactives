@@ -1,0 +1,16 @@
+scene rhScene = {
+
+    size = (1200,800).
+    layers = { top }.
+
+    background = loadImage(Images/circuit-final.png).
+
+    locomotive_gauche_img = loadImage(Images/locomotive_gauche.png).
+    locomotive_droite_img = loadImage(Images/locomotive_droite.png).
+    locomotive_haut_img = loadImage(Images/locomotive_haut.png).
+    locomotive_bas_img = loadImage(Images/locomotive_bas.png).
+
+
+
+
+}
