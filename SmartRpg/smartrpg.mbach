@@ -1,3 +1,31 @@
+eset Positions = { haut1, haut2, haut3, haut4, haut5, mihaut5, mihaut4, mihaut3, mihaut2, mihaut1, mibas1, mibas2, mibas3, mibas4, mibas5, bas5, bas4, bas3, bas2, bas1 }.
+
+eqn x_coord(haut1) = 192. y_coord(haut1) = 135.
+    x_coord(haut2) = 576. y_coord(haut2) = 135.
+    x_coord(haut3) = 960. y_coord(haut3) = 135.
+    x_coord(haut4) = 1344.  y_coord(haut4) = 135.
+    x_coord(haut5) = 1728.  y_coord(haut5) = 135.
+    x_coord(mihaut1) = 192. y_coord(mihaut1) = 405.
+    x_coord(mihaut2) = 576. y_coord(mihaut2) = 405.
+    x_coord(mihaut3) = 960. y_coord(mihaut3) = 405.
+    x_coord(mihaut4) = 1344. y_coord(mihaut4) = 405.
+    x_coord(mihaut5) = 1728. y_coord(mihaut5) = 405.
+    x_coord(mibas1) = 192. y_coord(mibas1) = 675.
+    x_coord(mibas2) = 576. y_coord(mibas2) = 675.
+    x_coord(mibas3) = 960. y_coord(mibas3) = 675.
+    x_coord(mibas4) = 1344. y_coord(mibas4) = 675.
+    x_coord(mibas5) = 1728. y_coord(mibas5) = 675.
+    x_coord(bas1) = 192. y_coord(bas1) = 945.
+    x_coord(bas2) = 576. y_coord(bas2) = 945.
+    x_coord(bas3) = 960. y_coord(bas3) = 945.
+    x_coord(bas4) = 1344. y_coord(bas4) = 945.
+    x_coord(bas5) = 1728. y_coord(bas5) = 945.
+
+    next(haut1) = haut2. next(haut2) = haut3. next(haut3) = haut4. next(haut4) = haut5.
+    next(haut5) = mihaut5. next(mihaut5) = mihaut4. next(mihaut4) = mihaut3. next(mihaut3) = mihaut2. next(mihaut2) = mihaut1.
+    next(mihaut1) = mibas1. next(mibas1) = mibas2. next(mibas2) = mibas3. next(mibas3) = mibas4. next(mibas4) = mibas5.
+    next(mibas5) = bas5. next(bas5) = bas4. next(bas4) = bas3. next(bas3) = bas2. next(bas2) = bas1. 
+
 scene smartrpgScene = {
     size = (1920, 1080).
     layers = { background }.
@@ -25,32 +53,13 @@ scene smartrpgScene = {
         display = { pion3_img }
         init = { wdL = top. }
     }
-
-    widget desert = {
-        display = { desert_img }
-        init = { wdL = top. }
-    }
-
-    widget foret = {
-        display = { foret_img }
-        init = { wdL = top. }
-    }
-
-    widget montagne = {
-        display = { montagne_img }
-        init = { wdL = top. }
-    }
-
-    widget volcan = {
-        display = { volcan_img }
-        init = {wdL = top. }
-    }
 }. 
 
-proc Foret = place_at(foret, smartrpgScene, 0, 0);
-                show(foret, smartrpgScene).
-
-    Init = draw_scene(smartrpgScene);
+proc Pion1(p: Positions) =
+        move_to(pion1, smartrpgScene, x_coord(next(p)), y_coord(next(p)));
+        Pion1(next(p)).
+        
+     Init = draw_scene(smartrpgScene);
             place_at(pion1, smartrpgScene, 100, 50);
             place_at(pion2, smartrpgScene, 100, 400);
             place_at(pion3, smartrpgScene, 500, 50);
