@@ -1,11 +1,15 @@
 scene smartrpgScene = {
-    size = (1380, 920).
+    size = (1920, 1080).
     layers = { background }.
 
     background = loadImage(Images/table.jpg).
     pion1_img = loadImage(Images/pion1.png).
     pion2_img = loadImage(Images/pion2.png).
     pion3_img = loadImage(Images/pion3.png).
+    desert_img = loadImage(Images/desert.png).
+    foret_img = loadImage(Images/foret.png).
+    montagne_img = loadImage(Images/montagne.png).
+    volcan_img = loadImage(Images/volcan.png).
 
     widget pion1 = {
         display = { pion1_img }
@@ -21,12 +25,36 @@ scene smartrpgScene = {
         display = { pion3_img }
         init = { wdL = top. }
     }
+
+    widget desert = {
+        display = { desert_img }
+        init = { wdL = top. }
+    }
+
+    widget foret = {
+        display = { foret_img }
+        init = { wdL = top. }
+    }
+
+    widget montagne = {
+        display = { montagne_img }
+        init = { wdL = top. }
+    }
+
+    widget volcan = {
+        display = { volcan_img }
+        init = {wdL = top. }
+    }
 }. 
 
-proc Init = draw_scene(smartrpgScene);
+proc Foret = place_at(foret, smartrpgScene, 0, 0);
+                show(foret, smartrpgScene).
+
+    Init = draw_scene(smartrpgScene);
             place_at(pion1, smartrpgScene, 100, 50);
             place_at(pion2, smartrpgScene, 100, 400);
             place_at(pion3, smartrpgScene, 500, 50);
+        
             show(pion1, smartrpgScene);
             show(pion2, smartrpgScene);
             show(pion3, smartrpgScene).
