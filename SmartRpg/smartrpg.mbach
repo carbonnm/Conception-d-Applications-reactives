@@ -178,6 +178,7 @@ scene smartrpgScene = {
 
 proc Pion1(p: Positions) =
         (
+        (
             nask(succ(p));
             tell(succ(p));
             (att(sens, pion1, smartrpgScene, reverse));
@@ -195,7 +196,9 @@ proc Pion1(p: Positions) =
             get(p);
             Pion1(pred(p))
         )
+        )
         +
+        (
         (
             nask(succv(p));
             tell(succv(p));
@@ -210,6 +213,7 @@ proc Pion1(p: Positions) =
             move_to(pion1, smartrpgScene, x_coord(predv(p)), y_coord(predv(p)));
             get(p);
             Pion1(predv(p))
+        )
         ).
 
     
@@ -299,12 +303,14 @@ proc Pion1(p: Positions) =
         (
         (
             (
-                (att(numero, de, smartrpgScene, de1)) ; 
+                (att(numero, de, smartrpgScene, de1)) ;
+                show(de, smartrpgScene) ;
                 (att(couleur, led, smartrpgScene, rouge))
             )
             +
             (
                 (att(numero, de, smartrpgScene, de6));
+                show(de, smartrpgScene) ;
                 (att(couleur, led, smartrpgScene, jaune))
             )
         )
@@ -313,11 +319,13 @@ proc Pion1(p: Positions) =
             (
                 (
                     (att(numero, de, smartrpgScene, de2)) ;
+                    show(de, smartrpgScene) ;
                     (att(couleur, led, smartrpgScene, blanc))
                 )
                 +
                 (
                     (att(numero, de, smartrpgScene, de3)) ;
+                    show(de, smartrpgScene) ;
                     (att(couleur, led, smartrpgScene, blanc))
             )   
             )
@@ -325,16 +333,19 @@ proc Pion1(p: Positions) =
             (
                 (
                     (att(numero, de, smartrpgScene, de4)) ;
+                    show(de, smartrpgScene) ;
                     (att(couleur, led, smartrpgScene, blanc))
                 )
                 +
                 (
                     (att(numero, de, smartrpgScene, de5)) ;
+                    show(de, smartrpgScene) ;
                     (att(couleur, led, smartrpgScene, blanc))
                 )
             )
         )
         );
+        hide(de, smartrpgScene) ;
         RollDice.
         
     Init = draw_scene(smartrpgScene);
@@ -345,7 +356,6 @@ proc Pion1(p: Positions) =
             show(led, smartrpgScene);
 
             place_at(de, smartrpgScene, 1675, 900);
-            show(de, smartrpgScene);
 
             place_at(cle, smartrpgScene, x_coord(mibas3), y_coord(mibas3));
             show(cle, smartrpgScene);
