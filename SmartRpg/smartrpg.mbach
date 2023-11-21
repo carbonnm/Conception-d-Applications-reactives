@@ -296,8 +296,8 @@ proc Pion1(p: Positions) =
 
 
     OpenCoffre = 
-        (ask(bas5);
-        (att(coffre, statut, smartrpgScene, ouvert))).
+        ask(bas5);
+        (att(statut, coffre, smartrpgScene, ouvert)).
 
 
     RollDice = 
