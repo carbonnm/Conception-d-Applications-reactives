@@ -233,34 +233,43 @@ proc Pion1(p: Positions) =
         ChangeDecor.
 
     RollDice = 
-        ((
-            (att(numero, de, smartrpgScene, de1)) ; 
-            (att(couleur, led, smartrpgScene, rouge))
+        (
+        (
+            (
+                (att(numero, de, smartrpgScene, de1)) ; 
+                (att(couleur, led, smartrpgScene, rouge))
+            )
+            +
+            (
+                (att(numero, de, smartrpgScene, de6));
+                (att(couleur, led, smartrpgScene, jaune))
+            )
         )
         +
         (
-            (att(numero, de, smartrpgScene, de2)) ;
-            (att(couleur, led, smartrpgScene, blanc))
-        )
-        +
-        (
-            (att(numero, de, smartrpgScene, de3)) ;
-            (att(couleur, led, smartrpgScene, blanc))
-        )
-        +
-        (
-            (att(numero, de, smartrpgScene, de4)) ;
-            (att(couleur, led, smartrpgScene, blanc))
-        )
-        +
-        (
-            (att(numero, de, smartrpgScene, de5)) ;
-            (att(couleur, led, smartrpgScene, blanc))
-        )
-        +
-        (
-            (att(numero, de, smartrpgScene, de6));
-            (att(couleur, led, smartrpgScene, jaune))
+            (
+                (
+                    (att(numero, de, smartrpgScene, de2)) ;
+                    (att(couleur, led, smartrpgScene, blanc))
+                )
+                +
+                (
+                    (att(numero, de, smartrpgScene, de3)) ;
+                    (att(couleur, led, smartrpgScene, blanc))
+            )   
+            )
+            +
+            (
+                (
+                    (att(numero, de, smartrpgScene, de4)) ;
+                    (att(couleur, led, smartrpgScene, blanc))
+                )
+                +
+                (
+                    (att(numero, de, smartrpgScene, de5)) ;
+                    (att(couleur, led, smartrpgScene, blanc))
+                )
+            )
         )
         );
         RollDice.
