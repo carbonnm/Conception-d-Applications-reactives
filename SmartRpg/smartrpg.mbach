@@ -153,6 +153,7 @@ scene smartrpgScene = {
 
 proc Pion1(p: Positions) =
         (
+        (
             nask(succ(p));
             tell(succ(p));
             move_to(pion1, smartrpgScene, x_coord(succ(p)), y_coord(succ(p)));
@@ -167,7 +168,9 @@ proc Pion1(p: Positions) =
             get(p);
             Pion1(pred(p))
         )
+        )
         +
+        (
         (
             nask(succv(p));
             tell(succv(p));
@@ -182,6 +185,7 @@ proc Pion1(p: Positions) =
             move_to(pion1, smartrpgScene, x_coord(predv(p)), y_coord(predv(p)));
             get(p);
             Pion1(predv(p))
+        )
         ).
 
     
