@@ -2,6 +2,7 @@ eset Positions = { haut1, haut2, haut3, haut4, haut5, mihaut5, mihaut4, mihaut3,
      Decors = { foret, montagne, volcan, desert }.
      NumeroDe = { de1, de2, de3, de4, de5, de6 }.
      CouleursLeds = { rouge, blanc, jaune }.
+     EtatCoffre = { ouvert, ferme }.
 
 eqn x_coord(haut1) = 150. y_coord(haut1) = 50.
     x_coord(haut2) = 514. y_coord(haut2) = 50.
@@ -71,6 +72,9 @@ scene smartrpgScene = {
     rouge_img = loadImage(Images/led_purple.png).
     blanc_img = loadImage(Images/led_white.png).
     jaune_img = loadImage(Images/led_orange.png).
+    cle_img = loadImage(Images/cle.png).
+    coffreOuvert_img = loadImage(Images/coffreOuvert.png).
+    coffreFerme_img = loadImage(Images/coffreFerme.png).
 
 
     widget decors = {
@@ -100,6 +104,23 @@ scene smartrpgScene = {
     widget pion3 = {
         display = { pion3_img }
         init = { wdL = top. }
+    }
+
+    widget cle = {
+        display = { cle_img }
+        init = { wdL = top. }
+    }
+
+    widget coffre = {
+        attributes = { statut in EtatCoffre. }
+        display = {
+            statut = ouvert -> coffreOuvert_img.
+            statut = ferme -> coffreFerme_img.
+        }
+        init = {
+            wdL = top.
+            statut = ferme.
+        }
     }
 
     widget de = {
@@ -283,6 +304,12 @@ proc Pion1(p: Positions) =
 
             place_at(de, smartrpgScene, 1675, 900);
             show(de, smartrpgScene);
+
+            place_at(cle, smartrpgScene, x_coord(mibas3), y_coord(mibas3));
+            show(cle, smartrpgScene);
+
+            place_at(coffre, smartrpgScene, x_coord(bas5), y_coord(bas5));
+            show(coffre, smartrpgScene)
 
             place_at(pion1, smartrpgScene, x_coord(haut1), y_coord(haut1));
             place_at(pion2, smartrpgScene, x_coord(bas1), y_coord(bas1));
