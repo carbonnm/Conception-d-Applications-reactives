@@ -68,9 +68,9 @@ scene smartrpgScene = {
     de4_img = loadImage(Images/d4.PNG).
     de5_img = loadImage(Images/d5.PNG).
     de6_img = loadImage(Images/d6.PNG).
-    rouge_img = loadImage(Images/red_led.png).
-    blanc_img = loadImage(Images/white_led.png).
-    jaune_img = loadImage(Images/yellow_led.png).
+    rouge_img = loadImage(Images/led_purple.png).
+    blanc_img = loadImage(Images/led_white.png).
+    jaune_img = loadImage(Images/led_orange.png).
 
 
     widget decors = {
@@ -260,15 +260,15 @@ proc Pion1(p: Positions) =
             place_at(led, smartrpgScene, 0, 0);
             show(led, smartrpgScene);
 
-            place_at(de, smartrpgScene, 1728, 945);
+            place_at(de, smartrpgScene, 1675, 945);
             show(de, smartrpgScene);
 
             place_at(pion1, smartrpgScene, x_coord(haut1), y_coord(haut1));
-            place_at(pion2, smartrpgScene, x_coord(bas1), y_coord(bas1));
-            place_at(pion3, smartrpgScene, x_coord(haut5), y_coord(haut5));
+            place_at(pion2, smartrpgScene, x_coord(bas1), y_coord(mibas1));
+            place_at(pion3, smartrpgScene, x_coord(haut5), y_coord(haut4));
             show(pion1, smartrpgScene);
             show(pion2, smartrpgScene);
             show(pion3, smartrpgScene);
             tell(haut1);
-            tell(haut5);
-            tell(bas1).
+            tell(haut4);
+            tell(mibas1).
