@@ -3,6 +3,7 @@ eset Positions = { haut1, haut2, haut3, haut4, haut5, mihaut5, mihaut4, mihaut3,
      NumeroDe = { de1, de2, de3, de4, de5, de6 }.
      CouleursLeds = { rouge, blanc, jaune }.
      EtatCoffre = { ouvert, ferme }.
+     SensJoueur = { droit, reverse }.
 
 eqn x_coord(haut1) = 150. y_coord(haut1) = 50.
     x_coord(haut2) = 514. y_coord(haut2) = 50.
@@ -57,6 +58,9 @@ scene smartrpgScene = {
     pion1_img = loadImage(Images/pion1.png).
     pion2_img = loadImage(Images/pion2.png).
     pion3_img = loadImage(Images/pion3.png).
+    pion1Inverse_img = loadImage(Images/pion1reverse.png).
+    pion2Inverse_img = loadImage(Images/pion2reverse.png).
+    pion3Inverse_img = loadImage(Images/pion3reverse.png).
     desert_img = loadImage(Images/desert.png).
     foret_img = loadImage(Images/foret.png).
     montagne_img = loadImage(Images/montagne.png).
@@ -90,18 +94,39 @@ scene smartrpgScene = {
     }
 
     widget pion1 = {
-        display = { pion1_img }
-        init = { wdL = top. }
+        attributes = { sens in SensJoueur. }
+        display = {
+            sens = droit -> pion1_img.
+            sens = reverse -> pion1Inverse_img.
+         }
+        init = { 
+            wdL = top. 
+            sens = reverse. 
+        }
     }
 
     widget pion2 = {
-        display = { pion2_img }
-        init = { wdL = top. }
+        attributes = { sens in SensJoueur. }
+        display = { 
+            sens = droit -> pion2_img.
+            sens = reverse -> pion2Inverse_img.
+         }
+        init = { 
+            wdL = top. 
+            sens = reverse.
+        }
     }
 
     widget pion3 = {
-        display = { pion3_img }
-        init = { wdL = top. }
+        attributes = { sens in SensJoueur. }
+        display = {
+            sens = droit -> pion3_img.
+            sens = reverse -> pion3Inverse_img.
+         }
+        init = { 
+            wdL = top. 
+            sens = droit.
+        }
     }
 
     widget cle = {
@@ -155,14 +180,17 @@ proc Pion1(p: Positions) =
         (
             nask(succ(p));
             tell(succ(p));
+            (att(sens, pion1, smartrpgScene, reverse));
             move_to(pion1, smartrpgScene, x_coord(succ(p)), y_coord(succ(p)));
             get(p);
+
             Pion1(succ(p))
         )
         +
         (
             nask(pred(p));
             tell(pred(p));
+            (att(sens, pion1, smartrpgScene, droit));
             move_to(pion1, smartrpgScene, x_coord(pred(p)), y_coord(pred(p)));
             get(p);
             Pion1(pred(p))
@@ -189,6 +217,7 @@ proc Pion1(p: Positions) =
         (
             nask(succ(p));
             tell(succ(p));
+            (att(sens, pion2, smartrpgScene, reverse));
             move_to(pion2, smartrpgScene, x_coord(succ(p)), y_coord(succ(p)));
             get(p);
             Pion2(succ(p))
@@ -197,6 +226,7 @@ proc Pion1(p: Positions) =
         (
             nask(pred(p));
             tell(pred(p));
+            (att(sens, pion2, smartrpgScene, droit));
             move_to(pion2, smartrpgScene, x_coord(pred(p)), y_coord(pred(p)));
             get(p);
             Pion2(pred(p))
@@ -223,6 +253,7 @@ proc Pion1(p: Positions) =
         (
             nask(succ(p));
             tell(succ(p));
+            (att(sens, pion3, smartrpgScene, droit));
             move_to(pion1, smartrpgScene, x_coord(succ(p)), y_coord(succ(p)));
             get(p);
             Pion3(succ(p))
@@ -231,6 +262,7 @@ proc Pion1(p: Positions) =
         (
             nask(pred(p));
             tell(pred(p));
+            (att(sens, pion3, smartrpgScene, reverse));
             move_to(pion1, smartrpgScene, x_coord(pred(p)), y_coord(pred(p)));
             get(p);
             Pion3(pred(p))
