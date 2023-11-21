@@ -74,7 +74,6 @@ scene smartrpgScene = {
     rouge_img = loadImage(Images/led_purple.png).
     blanc_img = loadImage(Images/led_white.png).
     jaune_img = loadImage(Images/led_orange.png).
-    cle_img = loadImage(Images/cle.png).
     coffreOuvert_img = loadImage(Images/coffreOuvert.png).
     coffreFerme_img = loadImage(Images/coffreFerme.png).
 
@@ -129,10 +128,6 @@ scene smartrpgScene = {
         }
     }
 
-    widget cle = {
-        display = { cle_img }
-        init = { wdL = top. }
-    }
 
     widget coffre = {
         attributes = { statut in EtatCoffre. }
@@ -299,6 +294,12 @@ proc Pion1(p: Positions) =
         (att(decor, decors, smartrpgScene, desert))) ;
         ChangeDecor.
 
+
+    OpenCoffre = 
+        (ask(bas5);
+        (att(coffre, EtatCoffre, smartrpgScene, ouvert))).
+
+
     RollDice = 
         (
         (
@@ -356,9 +357,6 @@ proc Pion1(p: Positions) =
             show(led, smartrpgScene);
 
             place_at(de, smartrpgScene, 1675, 900);
-
-            place_at(cle, smartrpgScene, x_coord(mibas3), y_coord(mibas3));
-            show(cle, smartrpgScene);
 
             place_at(coffre, smartrpgScene, x_coord(bas5), y_coord(bas5));
             show(coffre, smartrpgScene);
