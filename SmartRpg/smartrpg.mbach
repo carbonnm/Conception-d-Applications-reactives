@@ -3,26 +3,26 @@ eset Positions = { haut1, haut2, haut3, haut4, haut5, mihaut5, mihaut4, mihaut3,
      NumeroDe = { de1, de2, de3, de4, de5, de6 }.
      CouleursLeds = { rouge, blanc, jaune }.
 
-eqn x_coord(haut1) = 192. y_coord(haut1) = 135.
-    x_coord(haut2) = 576. y_coord(haut2) = 135.
-    x_coord(haut3) = 960. y_coord(haut3) = 135.
-    x_coord(haut4) = 1344.  y_coord(haut4) = 135.
-    x_coord(haut5) = 1728.  y_coord(haut5) = 135.
-    x_coord(mihaut1) = 192. y_coord(mihaut1) = 405.
-    x_coord(mihaut2) = 576. y_coord(mihaut2) = 405.
-    x_coord(mihaut3) = 960. y_coord(mihaut3) = 405.
-    x_coord(mihaut4) = 1344. y_coord(mihaut4) = 405.
-    x_coord(mihaut5) = 1728. y_coord(mihaut5) = 405.
-    x_coord(mibas1) = 192. y_coord(mibas1) = 675.
-    x_coord(mibas2) = 576. y_coord(mibas2) = 675.
-    x_coord(mibas3) = 960. y_coord(mibas3) = 675.
-    x_coord(mibas4) = 1344. y_coord(mibas4) = 675.
-    x_coord(mibas5) = 1728. y_coord(mibas5) = 675.
-    x_coord(bas1) = 192. y_coord(bas1) = 945.
-    x_coord(bas2) = 576. y_coord(bas2) = 945.
-    x_coord(bas3) = 960. y_coord(bas3) = 945.
-    x_coord(bas4) = 1344. y_coord(bas4) = 945.
-    x_coord(bas5) = 1728. y_coord(bas5) = 945.
+eqn x_coord(haut1) = 150. y_coord(haut1) = 50.
+    x_coord(haut2) = 514. y_coord(haut2) = 50.
+    x_coord(haut3) = 878. y_coord(haut3) = 50.
+    x_coord(haut4) = 1242.  y_coord(haut4) = 50.
+    x_coord(haut5) = 1606.  y_coord(haut5) = 50.
+    x_coord(mihaut1) = 150. y_coord(mihaut1) = 295.
+    x_coord(mihaut2) = 514. y_coord(mihaut2) = 295.
+    x_coord(mihaut3) = 878. y_coord(mihaut3) = 295.
+    x_coord(mihaut4) = 1242. y_coord(mihaut4) = 295.
+    x_coord(mihaut5) = 1606. y_coord(mihaut5) = 295.
+    x_coord(mibas1) = 150. y_coord(mibas1) = 540.
+    x_coord(mibas2) = 514. y_coord(mibas2) = 540.
+    x_coord(mibas3) = 878. y_coord(mibas3) = 540.
+    x_coord(mibas4) = 1242. y_coord(mibas4) = 540.
+    x_coord(mibas5) = 1606. y_coord(mibas5) = 540.
+    x_coord(bas1) = 150. y_coord(bas1) = 785.
+    x_coord(bas2) = 514. y_coord(bas2) = 785.
+    x_coord(bas3) = 878. y_coord(bas3) = 785.
+    x_coord(bas4) = 1242. y_coord(bas4) = 785.
+    x_coord(bas5) = 1606. y_coord(bas5) = 785.
 
     succ(haut1) = haut2. succ(haut2) = haut3. succ(haut3) = haut4. succ(haut4) = haut5.
     succ(mihaut5) = mihaut4. succ(mihaut4) = mihaut3. succ(mihaut3) = mihaut2. succ(mihaut2) = mihaut1.
@@ -281,12 +281,12 @@ proc Pion1(p: Positions) =
             place_at(led, smartrpgScene, 0, 0);
             show(led, smartrpgScene);
 
-            place_at(de, smartrpgScene, 1675, 945);
+            place_at(de, smartrpgScene, 1675, 900);
             show(de, smartrpgScene);
 
             place_at(pion1, smartrpgScene, x_coord(haut1), y_coord(haut1));
-            place_at(pion2, smartrpgScene, x_coord(bas1), y_coord(mibas1));
-            place_at(pion3, smartrpgScene, x_coord(haut5), y_coord(haut4));
+            place_at(pion2, smartrpgScene, x_coord(bas1), y_coord(bas1));
+            place_at(pion3, smartrpgScene, x_coord(haut5), y_coord(haut5));
             show(pion1, smartrpgScene);
             show(pion2, smartrpgScene);
             show(pion3, smartrpgScene);
