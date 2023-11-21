@@ -296,7 +296,7 @@ proc Pion1(p: Positions) =
 
 
     OpenCoffre = 
-        ask(bas5);
+        ask(mibas3);
         (att(statut, coffre, smartrpgScene, ouvert)).
 
 
@@ -358,7 +358,7 @@ proc Pion1(p: Positions) =
 
             place_at(de, smartrpgScene, 1675, 900);
 
-            place_at(coffre, smartrpgScene, x_coord(bas5), y_coord(bas5));
+            place_at(coffre, smartrpgScene, x_coord(mibas3), y_coord(mibas3));
             show(coffre, smartrpgScene);
 
             place_at(pion1, smartrpgScene, x_coord(haut1), y_coord(haut1));
