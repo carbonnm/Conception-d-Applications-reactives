@@ -230,7 +230,7 @@ proc Pion1(p: Positions) =
         +
         (
             nask(pred(p));
-            nask(pred(p));
+            tell(pred(p));
             move_to(pion1, smartrpgScene, x_coord(pred(p)), y_coord(pred(p)));
             get(p);
             Pion3(pred(p))
