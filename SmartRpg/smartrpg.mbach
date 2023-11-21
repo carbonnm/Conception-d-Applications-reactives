@@ -25,12 +25,12 @@ eqn x_coord(haut1) = 192. y_coord(haut1) = 135.
     succ(haut1) = haut2. succ(haut2) = haut3. succ(haut3) = haut4. succ(haut4) = haut5.
     succ(haut5) = mihaut5. succ(mihaut5) = mihaut4. succ(mihaut4) = mihaut3. succ(mihaut3) = mihaut2. succ(mihaut2) = mihaut1.
     succ(mihaut1) = mibas1. succ(mibas1) = mibas2. succ(mibas2) = mibas3. succ(mibas3) = mibas4. succ(mibas4) = mibas5.
-    succ(mibas5) = bas5. succ(bas5) = bas4. succ(bas4) = bas3. succ(bas3) = bas2. succ(bas2) = bas1. 
+    succ(mibas5) = bas5. succ(bas5) = bas4. succ(bas4) = bas3. succ(bas3) = bas2. succ(bas2) = bas1. succ(bas1) = haut1.
 
     pred(haut2) = haut1. pred(haut3) = haut2. pred(haut4) = haut3. pred(haut5) = haut4. pred(mihaut5) = haut5.
     pred(mihaut4) = mihaut5. pred(mihaut3) = mihaut4. pred(mihaut2) = mihaut3. pred(mihaut1) = mihaut2.
     pred(mibas1) = mihaut1. pred(mibas2) = mibas1. pred(mibas3) = mibas2. pred(mibas4) = mibas3. pred(mibas5) = mibas4.
-    pred(bas5) = mibas5. pred(bas4) = bas5. pred(bas3) = bas4. pred(bas2) = bas3. pred(bas1) = bas2.
+    pred(bas5) = mibas5. pred(bas4) = bas5. pred(bas3) = bas4. pred(bas2) = bas3. pred(bas1) = bas2. pred(haut1) = bas1.
 
 scene smartrpgScene = {
     size = (1920, 1080).
@@ -62,16 +62,26 @@ scene smartrpgScene = {
 }. 
 
 proc Pion1(p: Positions) =
-        move_to(pion1, smartrpgScene, x_coord(next(p)), y_coord(next(p)));
-        Pion1(next(p)).
+        (move_to(pion1, smartrpgScene, x_coord(succ(p)), y_coord(succ(p)));
+        Pion1(succ(p)))
+        +
+        (move_to(pion1, smartrpgScene, x_coord(pred(p)), y_coord(pred(p)));
+        Pion1(pred(p))).
+
     
     Pion2(p: Positions) = 
-        move_to(pion2, smartrpgScene, x_coord(next(p)), y_coord(next(p)));
-        Pion2(next(p)).
+        (move_to(pion1, smartrpgScene, x_coord(succ(p)), y_coord(succ(p)));
+        Pion2(succ(p)))
+        +
+        (move_to(pion1, smartrpgScene, x_coord(pred(p)), y_coord(pred(p)));
+        Pion2(pred(p))).
     
     Pion3(p: Positions) =
-        move_to(pion3, smartrpgScene, x_coord(next(p)), y_coord(next(p)));
-        Pion3(next(p)).
+        (move_to(pion1, smartrpgScene, x_coord(succ(p)), y_coord(succ(p)));
+        Pion3(succ(p)))
+        +
+        (move_to(pion1, smartrpgScene, x_coord(pred(p)), y_coord(pred(p)));
+        Pion3(pred(p))).
         
     Init = draw_scene(smartrpgScene);
             place_at(pion1, smartrpgScene, 100, 50);
