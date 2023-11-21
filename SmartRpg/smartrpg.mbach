@@ -1,6 +1,7 @@
 eset Positions = { haut1, haut2, haut3, haut4, haut5, mihaut5, mihaut4, mihaut3, mihaut2, mihaut1, mibas1, mibas2, mibas3, mibas4, mibas5, bas5, bas4, bas3, bas2, bas1 }.
      Decors = { foret, montagne, volcan, desert }.
      NumeroDe = { de1, de2, de3, de4, de5, de6 }.
+     CouleursLeds = { rouge, blanc, jaune }.
 
 eqn x_coord(haut1) = 192. y_coord(haut1) = 135.
     x_coord(haut2) = 576. y_coord(haut2) = 135.
@@ -35,7 +36,7 @@ eqn x_coord(haut1) = 192. y_coord(haut1) = 135.
 
 scene smartrpgScene = {
     size = (1920, 1080).
-    layers = { background }.
+    layers = { top }.
 
     background = loadImage(Images/table.jpg).
     pion1_img = loadImage(Images/pion1.png).
@@ -51,6 +52,24 @@ scene smartrpgScene = {
     de4_img = loadImage(Images/d4.PNG).
     de5_img = loadImage(Images/d5.PNG).
     de6_img = loadImage(Images/d6.PNG).
+    rouge_img = loadImage(Images/red_led.png).
+    blanc_img = loadImage(Images/white_led.png).
+    jaune_img = loadImage(Images/yellow_led.png).
+
+
+    widget decors = {
+        attributes = { decor in Decors. }
+        display = { 
+            decor = foret -> foret_img.
+            decor = montagne -> montagne_img.
+            decor = desert -> desert_img.
+            decor = volcan -> volcan_img.
+         }
+         init = {
+            wdL = top.
+            decor = foret.
+         }
+    }
 
     widget pion1 = {
         display = { pion1_img }
@@ -67,20 +86,6 @@ scene smartrpgScene = {
         init = { wdL = top. }
     }
 
-    widget decors = {
-        attributes = { decor in Decors. }
-        display = { 
-            decor = foret -> foret_img.
-            decor = montagne -> montagne_img.
-            decor = desert -> desert_img.
-            decor = volcan -> volcan_img.
-         }
-         init = {
-            wdL = top.
-            decor = foret.
-         }
-    }
-
     widget de = {
         attributes = { numero in NumeroDe. }
         display = {
@@ -94,6 +99,19 @@ scene smartrpgScene = {
         init = {
             wdL = top.
             numero = de1.
+        }
+    }
+
+    widget led = {
+        attributes = { couleur in CouleursLeds. }
+        display = {
+            couleur = rouge -> rouge_img.
+            couleur = blanc -> blanc_img.
+            couleur = jaune -> jaune_img.
+        }
+        init = {
+            wdL = top.
+            couleur = blanc.
         }
     }
 }. 
@@ -131,28 +149,41 @@ proc Pion1(p: Positions) =
         ChangeDecor.
 
     RollDice = 
-        ((att(numero, de, smartrpgScene, de1))
+        (
+            ((att(numero, de, smartrpgScene, de1)) ; 
+            (att(couleur, led, smartrpgScene, rouge)))
         +
-        (att(numero, de, smartrpgScene, de2))
+            ((att(numero, de, smartrpgScene, de2)) ;
+            (att(couleur, led, smartrpgScene, blanc)))
         +
-        (att(numero, de, smartrpgScene, de3))
+            ((att(numero, de, smartrpgScene, de3)) ;
+            (att(couleur, led, smartrpgScene, blanc)))
         +
-        (att(numero, de, smartrpgScene, de4))
+            ((att(numero, de, smartrpgScene, de4)) ;
+            (att(couleur, led, smartrpgScene, blanc)))
         +
-        (att(numero, de, smartrpgScene, de5))
+            ((att(numero, de, smartrpgScene, de5)) ;
+            (att(couleur, led, smartrpgScene, blanc)))
         +
-        (att(numero, de, smartrpgScene, de6))) ;
+            ((att(numero, de, smartrpgScene, de6));
+            (att(couleur, led, smartrpgScene, jaune)))
+        );
         RollDice.
+
         
     Init = draw_scene(smartrpgScene);
             place_at(decors, smartrpgScene, 0, 0);
-            place_at(de, smartrpgScene, 1000, 700);
+            show(decors, smartrpgScene);
+
+            place_at(led, smartrpgScene, 0, 0);
+            show(led, smartrpgScene);
+
+            place_at(de, smartrpgScene, 1728, 945);
+            show(de, smartrpgScene);
+
             place_at(pion1, smartrpgScene, 100, 50);
             place_at(pion2, smartrpgScene, 100, 400);
             place_at(pion3, smartrpgScene, 500, 50);
-        
-            show(decors, smartrpgScene);
-            show(de, smartrpgScene);
             show(pion1, smartrpgScene);
             show(pion2, smartrpgScene);
             show(pion3, smartrpgScene).
