@@ -1,0 +1,84 @@
+eset Segments = {a1, a2, a3, cleft, cright,
+                 d1, d2, d3, 
+		 b1, b2, b3, out_left, out_right }.
+     Tokens = {ta1, ta2, ta3, tc, 
+               td1, td2, td3, 
+	       tb1, tb2, tb3, tout }.		 
+     Directions = { left, right }.
+
+eqn x_coord(out_left) = 1022.    y_coord(out_left) = 325.
+    x_coord(out_right) = 1022.   y_coord(out_right) = 237.
+    x_coord(a1) = 885.           y_coord(a1) = 325.
+    x_coord(a2) = 765.           y_coord(a2) = 325.
+    x_coord(a3) = 650.           y_coord(a3) = 325.
+    x_coord(cleft) = 490.        y_coord(cleft) = 270.
+    x_coord(cright) = 490.       y_coord(cright) = 270.
+    x_coord(d1) = 229.           y_coord(d1) = 335. 
+    x_coord(d2) = 23.            y_coord(d2) = 296.
+    x_coord(d3) = 213.           y_coord(d3) = 222.
+    x_coord(b1) = 650.           y_coord(b1) = 237.
+    x_coord(b2) = 765.           y_coord(b2) = 237.
+    x_coord(b3) = 885.           y_coord(b3) = 237.
+
+    token(out_left) = tout.       token(out_right) = tout.
+    token(cleft) = tc.            token(cright) = tc.
+    token(a1) = ta1.   token(a2) = ta2.   token(a3) = ta3.
+    token(b1) = tb1.   token(b2) = tb2.   token(b3) = tb3.
+    token(d1) = td1.   token(d2) = td2.   token(d3) = td3.
+    
+    next(out_left) = a1.
+    next(a1) = a2.   next(a2) = a3.   next(a3) = cleft.
+    next(cleft) = d1.
+    next(d1) = d2.   next(d2) = d3.   next(d3) = cright.
+    next(cright) = b1.
+    next(b1) = b2.   next(b2) = b3. 
+    next(b3) = out_right.
+    next(out_right) = out_left.
+
+    dir(a1) = left.  dir(a2) = left.  dir(a3) = left.
+    dir(cleft) = left.  dir(cright) = right.
+    dir(d1) = left.  dir(d2) = right.  dir(d3) = right.
+    dir(b1) = right.  dir(b2) = right.  dir(b3) = right.
+    dir(out_left) = left.  dir(out_right) = right.
+
+
+scene raScene = {
+
+    size = (1200,526).
+    layers = { top }.
+
+    background = loadImage(Images/round_about.png).
+
+    voiture_jaune_img =  loadImage(Images/voiture.png).
+    voiture_jaune_renversee_img =  loadImage(Images/voiture_renversee.png).
+
+    widget voiture_jaune = {
+       attributes = { position_jaune in Directions. }
+       display = {
+          position_jaune = left -> voiture_jaune_img.
+	  position_jaune = right -> voiture_jaune_renversee_img.
+       }
+       init = {
+          wdL = top.
+	  position_jaune = left.
+       }
+    }
+
+}.
+
+proc Voiture(s:Segments) =
+        get(token(next(s)));
+        move_to(voiture_jaune,raScene,x_coord(next(s)),y_coord(next(s)));
+        tell(token(s));
+        att(position_jaune,voiture_jaune,raScene,dir(next(s)));
+	Voiture(next(s)).
+
+     Init_tokens = tell(ta1); tell(ta2); tell(ta3); tell(tc);
+                   tell(td1); tell(td2); tell(td3);
+		   tell(tb1); tell(tb2); tell(tb3);
+		   tell(tout).
+		   
+     Init = draw_scene(raScene);
+            place_at(voiture_jaune,raScene,x_coord(out_left),y_coord(out_left));
+            show(voiture_jaune,raScene);
+            Voiture(out_left).

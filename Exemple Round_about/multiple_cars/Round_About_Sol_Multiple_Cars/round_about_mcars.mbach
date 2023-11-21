@@ -1,0 +1,303 @@
+eset Segments = { a1, a2, a3, cleft, cright,
+                  d1, d2, d3, 
+		  b1, b2, b3,
+		  out_left_yellow, out_left_blue, out_left_purple,
+		  out_left_red, out_left_green, out_left_pink,
+		  out_right }.
+     Tokens = { ta1, ta2, ta3, tc, 
+                td1, td2, td3, 
+	        tb1, tb2, tb3, tout,
+	        tr }.		 
+     Directions = { left, right }.
+     Colors = { yellow, blue, purple, red, green, pink }.
+
+eqn x_coord(out_left_yellow) = 1022.    y_coord(out_left_yellow) = 325.
+    x_coord(out_left_blue) = 1032.      y_coord(out_left_blue) = 335.
+    x_coord(out_left_purple) = 1042.    y_coord(out_left_purple) = 345.
+    x_coord(out_left_red) = 1052.       y_coord(out_left_red) = 355.
+    x_coord(out_left_green) = 1062.     y_coord(out_left_green) = 365.
+    x_coord(out_left_pink) = 1072.      y_coord(out_left_pink) = 375.
+    x_coord(out_right) = 1022.          y_coord(out_right) = 237.
+    x_coord(a1) = 885.                  y_coord(a1) = 325.
+    x_coord(a2) = 765.                  y_coord(a2) = 325.
+    x_coord(a3) = 650.                  y_coord(a3) = 325.
+    x_coord(cleft) = 490.               y_coord(cleft) = 270.
+    x_coord(cright) = 490.              y_coord(cright) = 270.
+    x_coord(d1) = 229.                  y_coord(d1) = 335. 
+    x_coord(d2) = 23.                   y_coord(d2) = 296.
+    x_coord(d3) = 213.                  y_coord(d3) = 222.
+    x_coord(b1) = 650.                  y_coord(b1) = 237.
+    x_coord(b2) = 765.                  y_coord(b2) = 237.
+    x_coord(b3) = 885.                  y_coord(b3) = 237.
+
+    token(out_left_yellow) = tout.
+    token(out_left_blue) = tout.
+    token(out_left_purple) = tout.
+    token(out_left_red) = tout.
+    token(out_left_green) = tout.
+    token(out_left_pink) = tout.
+    token(out_right) = tout.
+    token(cleft) = tc.            token(cright) = tc.
+    token(a1) = ta1.   token(a2) = ta2.   token(a3) = ta3.
+    token(b1) = tb1.   token(b2) = tb2.   token(b3) = tb3.
+    token(d1) = td1.   token(d2) = td2.   token(d3) = td3.
+    
+    next(out_left) = a1.
+    next(out_left_yellow) = a1.    
+    next(out_left_blue) = a1.    
+    next(out_left_purple) = a1.    
+    next(out_left_red) = a1.    
+    next(out_left_green) = a1.    
+    next(out_left_pink) = a1.    
+    next(a1) = a2.   next(a2) = a3.   next(a3) = cleft.
+    next(cleft) = d1.
+    next(d1) = d2.   next(d2) = d3.   next(d3) = cright.   
+    next(cright) = b1.
+    next(b1) = b2.   next(b2) = b3. 
+    next(b3) = out_right.
+
+    next_out(yellow,out_right) = out_left_yellow.
+    next_out(blue,out_right) = out_left_blue.
+    next_out(purple,out_right) = out_left_purple.
+    next_out(red,out_right) = out_left_red.
+    next_out(green,out_right) = out_left_green.
+    next_out(pink,out_right) = out_left_pink.
+
+    dir(a1) = left.  dir(a2) = left.  dir(a3) = left.
+    dir(cleft) = left.  dir(cright) = right.
+    dir(d1) = left.  dir(d2) = right.  dir(d3) = right.
+    dir(b1) = right.  dir(b2) = right.  dir(b3) = right.
+    dir(out_left) = left.  dir(out_right) = right.
+    dir(out_left_yellow) = left.
+    dir(out_left_blue) = left.
+    dir(out_left_purple) = left.
+    dir(out_left_red) = left.
+    dir(out_left_green) = left.
+    dir(out_left_pink) = left.
+    
+
+    position(yellow) = position_jaune.
+    position(blue) = position_bleu.
+    position(purple) = position_mauve.
+    position(red) = position_rouge.
+    position(green) = position_verte.
+    position(pink) = position_violet.
+
+    car(yellow) = voiture_jaune.
+    car(blue) = voiture_bleu.
+    car(purple) = voiture_mauve.
+    car(red) = voiture_rouge.
+    car(green) = voiture_verte.
+    car(pink) = voiture_violet.
+
+    out_left(yellow) = out_left_yellow.
+    out_left(blue) = out_left_blue.
+    out_left(purple) = out_left_purple.
+    out_left(red) = out_left_red.
+    out_left(green) = out_left_green.
+    out_left(pink) = out_left_pink.
+    
+scene raScene = {
+
+    size = (1200,526).
+    layers = { top }.
+
+    background = loadImage(Images/round_about.png).
+
+    voiture_jaune_img =  loadImage(Images/voiture.png).
+    voiture_jaune_renversee_img =  loadImage(Images/voiture_renversee.png).
+
+    voiture_bleu_img =  loadImage(Images/voiture_bleu.png).
+    voiture_bleu_renversee_img =  loadImage(Images/voiture_bleu_renversee.png).
+
+    voiture_mauve_img =  loadImage(Images/voiture_mauve.png).
+    voiture_mauve_renversee_img =  loadImage(Images/voiture_mauve_renversee.png).
+
+    voiture_rouge_img =  loadImage(Images/voiture_rouge.png).
+    voiture_rouge_renversee_img =  loadImage(Images/voiture_rouge_renversee.png).
+
+    voiture_verte_img =  loadImage(Images/voiture_verte.png).
+    voiture_verte_renversee_img =  loadImage(Images/voiture_verte_renversee.png).
+
+    voiture_violet_img =  loadImage(Images/voiture_violet.png).
+    voiture_violet_renversee_img =  loadImage(Images/voiture_violet_renversee.png).
+
+
+    widget voiture_jaune = {
+       attributes = { position_jaune in Directions. }
+       display = {
+          position_jaune = left -> voiture_jaune_img.
+	  position_jaune = right -> voiture_jaune_renversee_img.
+       }
+       init = {
+          wdL = top.
+	  position_jaune = left.
+       }
+    }
+
+    widget voiture_bleu = {
+       attributes = { position_bleu in Directions. }
+       display = {
+          position_bleu = left -> voiture_bleu_img.
+	  position_bleu = right -> voiture_bleu_renversee_img.
+       }
+       init = {
+          wdL = top.
+	  position_bleu = left.
+       }
+    }
+
+    widget voiture_mauve = {
+       attributes = { position_mauve in Directions. }
+       display = {
+          position_mauve = left -> voiture_mauve_img.
+	  position_mauve = right -> voiture_mauve_renversee_img.
+       }
+       init = {
+          wdL = top.
+	  position_mauve = left.
+       }
+    }
+
+    widget voiture_rouge = {
+       attributes = { position_rouge in Directions. }
+       display = {
+          position_rouge = left -> voiture_rouge_img.
+	  position_rouge = right -> voiture_rouge_renversee_img.
+       }
+       init = {
+          wdL = top.
+	  position_rouge = left.
+       }
+    }
+
+    widget voiture_verte = {
+       attributes = { position_verte in Directions. }
+       display = {
+          position_verte = left -> voiture_verte_img.
+	  position_verte = right -> voiture_verte_renversee_img.
+       }
+       init = {
+          wdL = top.
+	  position_verte = left.
+       }
+    }
+
+    widget voiture_violet = {
+       attributes = { position_violet in Directions. }
+       display = {
+          position_violet = left -> voiture_violet_img.
+	  position_violet = right -> voiture_violet_renversee_img.
+       }
+       init = {
+          wdL = top.
+	  position_violet = left.
+       }
+    }
+
+}.
+
+proc Orientate_car(c:Color,s:Segments) =
+     ( (c=yellow) -> att(position_jaune,voiture_jaune,raScene,dir(s)) )
+     +
+     ( (c=blue) -> att(position_bleu,voiture_bleu,raScene,dir(s)) )
+     +
+     ( (c=purple) -> att(position_mauve,voiture_mauve,raScene,dir(s)) )
+     +
+     ( (c=red) -> att(position_rouge,voiture_rouge,raScene,dir(s)) )
+     +
+     ( (c=green) -> att(position_verte,voiture_verte,raScene,dir(s)) )
+     +
+     ( (c=pink) -> att(position_violet,voiture_violet,raScene,dir(s)) ).
+
+
+     Move_car(c:Color,s:Segment) =
+     ( (c=yellow) -> move_to(voiture_jaune,raScene,x_coord(s),y_coord(s)) )
+     +
+     ( (c=blue) -> move_to(voiture_bleu,raScene,x_coord(s),y_coord(s)) )
+     +
+     ( (c=purple) -> move_to(voiture_mauve,raScene,x_coord(s),y_coord(s)) )
+     +
+     ( (c=red) -> move_to(voiture_rouge,raScene,x_coord(s),y_coord(s)) )
+     +
+     ( (c=green) -> move_to(voiture_verte,raScene,x_coord(s),y_coord(s)) )
+     +
+     ( (c=pink) -> move_to(voiture_violet,raScene,x_coord(s),y_coord(s)) ).
+
+
+     Place_car(c:Color) =
+     ( (c=yellow) ->
+           ( place_at(voiture_jaune,raScene,x_coord(out_left(c)),y_coord(out_left(c)));
+             show(voiture_jaune,raScene) ))
+     +
+     ( (c=blue) ->
+           ( place_at(voiture_bleu,raScene,x_coord(out_left(c)),y_coord(out_left(c)));
+             show(voiture_bleu,raScene) ))
+     +
+     ( (c=purple) ->
+           ( place_at(voiture_mauve,raScene,x_coord(out_left(c)),y_coord(out_left(c)));
+             show(voiture_mauve,raScene) ))
+     +
+     ( (c=red) ->
+           ( place_at(voiture_rouge,raScene,x_coord(out_left(c)),y_coord(out_left(c)));
+             show(voiture_rouge,raScene) ))
+     +
+     ( (c=green) ->
+           ( place_at(voiture_verte,raScene,x_coord(out_left(c)),y_coord(out_left(c)));
+             show(voiture_verte,raScene) ))
+     +
+     ( (c=pink) ->
+           ( place_at(voiture_violet,raScene,x_coord(out_left(c)),y_coord(out_left(c)));
+             show(voiture_violet,raScene) )).
+
+
+
+     Voiture(c:Color,s:Segments) =
+     ( ( s = a3 ) ->
+           ( get(tr);
+             get(token(next(s)));
+             Move_car(c,next(s));
+             tell(token(s));
+     	     Orientate_car(c,next(s));
+	     Voiture(c,next(s)) ))
+     +
+     ( ( s = cright ) ->
+           ( get(token(next(s)));
+             tell(tr);
+             Move_car(c,next(s));
+             tell(token(s));
+     	     Orientate_car(c,next(s));	     
+	     Voiture(c,next(s)) ))
+     +
+     ( ( s = out_right ) ->
+           ( get(token(next_out(c,s)));
+             Move_car(c,next_out(c,s));
+             tell(token(s));
+     	     Orientate_car(c,next_out(c,s));	     
+	     Voiture(c,next_out(c,s)) ))
+     +
+     ( ( (!(s=a3)) & (!(s=cright)) & (!(s=out_right)) ) ->
+           ( get(token(next(s)));
+             Move_car(c,next(s));
+             tell(token(s));	
+     	     Orientate_car(c,next(s));	     
+	     Voiture(c,next(s)) )).
+     
+
+     Init_tokens = tell(ta1); tell(ta2); tell(ta3); tell(tc);
+                   tell(td1); tell(td2); tell(td3);
+		   tell(tb1); tell(tb2); tell(tb3);
+		   tell(tout); tell(tout); tell(tout);
+		   tell(tout); tell(tout); tell(tout);
+		   tell(tr); tell(tr); tell(tr).
+		   
+     Init_scene =
+         draw_scene(raScene);
+	 Place_car(yellow); Place_car(blue); Place_car(purple);
+	 Place_car(red); Place_car(green); Place_car(pink).
+
+     Init_cars =
+         Voiture(yellow,out_left_yellow) || Voiture(blue,out_left_blue) ||
+	 Voiture(purple,out_left_purple) || Voiture(red,out_left_red) ||
+	 Voiture(green,out_left_green) || Voiture(pink,out_left_pink).
+

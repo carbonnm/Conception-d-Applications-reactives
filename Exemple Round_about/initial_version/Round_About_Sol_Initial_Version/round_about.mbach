@@ -1,0 +1,78 @@
+eset Segments = {a1, a2, a3, cleft, cright,
+                 d1, d2, d3, d4, d5, d6, d7,
+		 b1, b2, b3, out_left, out_right }.
+     Directions = { left, up, right }.
+
+eqn x_coord(out_left) = 1022.    y_coord(out_left) = 325.
+    x_coord(out_right) = 1022.   y_coord(out_right) = 237.
+    x_coord(a1) = 885.           y_coord(a1) = 325.
+    x_coord(a2) = 765.           y_coord(a2) = 325.
+    x_coord(a3) = 650.           y_coord(a3) = 325.
+    x_coord(cleft) = 490.        y_coord(cleft) = 270.
+    x_coord(cright) = 490.       y_coord(cright) = 270.
+    x_coord(d1) = 267.           y_coord(d1) = 312. 
+    x_coord(d2) = 191.           y_coord(d2) = 358.
+    x_coord(d3) = 90.            y_coord(d3) = 394.
+    x_coord(d4) = 24.            y_coord(d4) = 299.
+    x_coord(d5) = 60.            y_coord(d5) = 196.
+    x_coord(d6) = 158.           y_coord(d6) = 199.
+    x_coord(d7) = 268.           y_coord(d7) = 246.
+    x_coord(b1) = 650.           y_coord(b1) = 237.
+    x_coord(b2) = 765.           y_coord(b2) = 237.
+    x_coord(b3) = 885.           y_coord(b3) = 237.
+
+
+    next(out_left) = a1.
+    next(a1) = a2.   next(a2) = a3.   next(a3) = cleft.
+    next(cleft) = d1.
+    next(d1) = d2.   next(d2) = d3.   next(d3) = d4.   next(d4) = d5.
+    next(d5) = d6.   next(d6) = d7.   next(d7) = cright.
+    next(cright) = b1.
+    next(b1) = b2.   next(b2) = b3. 
+    next(b3) = out_right.
+    next(out_right) = out_left.
+
+    dir(a1) = left.  dir(a2) = left.  dir(a3) = left.
+    dir(cleft) = left.  dir(cright) = right.
+    dir(d1) = left.  dir(d2) = left.  dir(d3) = left.
+    dir(d4) = up.  dir(d5) = right.
+    dir(d6) = right.  dir(d7) = right.
+    dir(b1) = right.  dir(b2) = right.  dir(b3) = right.
+    dir(out_left) = left.  dir(out_right) = right.
+
+
+scene raScene = {
+
+    size = (1200,526).
+    layers = { top }.
+
+    background = loadImage(Images/round_about.png).
+
+    voiture_img =  loadImage(Images/voiture.png).
+    voiture_verticale_img =  loadImage(Images/voiture_verticale.png).
+    voiture_renversee_img =  loadImage(Images/voiture_renversee.png).
+
+    widget voiture = {
+       attributes = { position in Directions. }
+       display = {
+          position = left -> voiture_img.
+	  position = right -> voiture_renversee_img.
+	  position = up -> voiture_verticale_img.
+       }
+       init = {
+          wdL = top.
+	  position = left.
+       }
+    }
+
+}.
+
+proc Voiture(s:Segments) =
+        move_to(voiture,raScene,x_coord(next(s)),y_coord(next(s)));
+        att(position,voiture,raScene,dir(next(s))); 	    	
+	Voiture(next(s)).
+
+     Init = draw_scene(raScene);
+            place_at(voiture,raScene,x_coord(out_left),y_coord(out_left));
+            show(voiture,raScene);
+            Voiture(out_left).
