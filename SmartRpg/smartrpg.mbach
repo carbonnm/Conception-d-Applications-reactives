@@ -183,7 +183,7 @@ proc Pion1(p: Positions) =
             move_to(pion1, smartrpgScene, x_coord(succ(p)), y_coord(succ(p)));
             get(p);
 
-            (((p = mibas3) -> OpenCoffre) +
+            (((succ(p) = mibas3) -> OpenCoffre) +
             (tell(Pion2);
             Pion1(succ(p))))
         )
@@ -195,7 +195,7 @@ proc Pion1(p: Positions) =
             move_to(pion1, smartrpgScene, x_coord(pred(p)), y_coord(pred(p)));
             get(p);
 
-            (((p = mibas3) -> OpenCoffre) +
+            (((pred(p) = mibas3) -> OpenCoffre) +
             (tell(Pion2);
             Pion1(pred(p))))
         )
@@ -208,7 +208,7 @@ proc Pion1(p: Positions) =
             move_to(pion1, smartrpgScene, x_coord(succv(p)), y_coord(succv(p)));
             get(p);
 
-            (((p = mibas3) -> OpenCoffre) +
+            (((succv(p) = mibas3) -> OpenCoffre) +
             (tell(Pion2);
             Pion1(succv(p))))
         )
@@ -219,7 +219,7 @@ proc Pion1(p: Positions) =
             move_to(pion1, smartrpgScene, x_coord(predv(p)), y_coord(predv(p)));
             get(p);
 
-            (((p = mibas3) -> OpenCoffre) +
+            (((predv(p) = mibas3) -> OpenCoffre) +
             (tell(Pion2);
             Pion1(predv(p))))
         )
@@ -236,7 +236,7 @@ proc Pion1(p: Positions) =
             move_to(pion2, smartrpgScene, x_coord(succ(p)), y_coord(succ(p)));
             get(p);
 
-            (((p = mibas3) -> OpenCoffre) +
+            (((succ(p) = mibas3) -> OpenCoffre) +
             (tell(Pion3);
             Pion2(succ(p))))
         )
@@ -248,7 +248,7 @@ proc Pion1(p: Positions) =
             move_to(pion2, smartrpgScene, x_coord(pred(p)), y_coord(pred(p)));
             get(p);
 
-            (((p = mibas3) -> OpenCoffre) +
+            (((pred(p) = mibas3) -> OpenCoffre) +
             (tell(Pion3);
             Pion2(pred(p))))
         )
@@ -259,7 +259,7 @@ proc Pion1(p: Positions) =
             move_to(pion2, smartrpgScene, x_coord(succv(p)), y_coord(succv(p)));
             get(p);
 
-            (((p = mibas3) -> OpenCoffre) +
+            (((succv(p) = mibas3) -> OpenCoffre) +
             (tell(Pion3);
             Pion2(succv(p))))
         )
@@ -270,7 +270,7 @@ proc Pion1(p: Positions) =
             move_to(pion2, smartrpgScene, x_coord(predv(p)), y_coord(predv(p)));
             get(p);
 
-            (((p = mibas3) -> OpenCoffre) +
+            (((predv(p) = mibas3) -> OpenCoffre) +
             (tell(Pion3);
             Pion2(predv(p))))
 
@@ -286,7 +286,7 @@ proc Pion1(p: Positions) =
             move_to(pion3, smartrpgScene, x_coord(succ(p)), y_coord(succ(p)));
             get(p);
 
-            (((p = mibas3) -> OpenCoffre) +
+            (((succ(p) = mibas3) -> OpenCoffre) +
             (tell(Pion1);
             Pion3(succ(p))))
         )
@@ -298,7 +298,7 @@ proc Pion1(p: Positions) =
             move_to(pion3, smartrpgScene, x_coord(pred(p)), y_coord(pred(p)));
             get(p);
 
-            (((p = mibas3) -> OpenCoffre) +
+            (((pred(p) = mibas3) -> OpenCoffre) +
             (tell(Pion1);
             Pion3(pred(p))))
         )
@@ -309,7 +309,7 @@ proc Pion1(p: Positions) =
             move_to(pion3, smartrpgScene, x_coord(succv(p)), y_coord(succv(p)));
             get(p);
 
-            (((p = mibas3) -> OpenCoffre) +
+            (((succv(p) = mibas3) -> OpenCoffre) +
             (tell(Pion1);
             Pion3(succv(p))))
         )
@@ -320,7 +320,7 @@ proc Pion1(p: Positions) =
             move_to(pion3, smartrpgScene, x_coord(predv(p)), y_coord(predv(p)));
             get(p);
 
-            (((p = mibas3) -> OpenCoffre) +
+            (((predv(p) = mibas3) -> OpenCoffre) +
             (tell(Pion1);
             Pion3(predv(p))))
         )).
@@ -333,7 +333,8 @@ proc Pion1(p: Positions) =
         +
         (att(decor, decors, smartrpgScene, volcan))
         +
-        (att(decor, decors, smartrpgScene, desert))).
+        (att(decor, decors, smartrpgScene, desert)));
+        ChangeDecor.
 
 
     OpenCoffre = 
