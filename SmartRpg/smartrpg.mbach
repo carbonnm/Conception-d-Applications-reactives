@@ -172,6 +172,9 @@ scene smartrpgScene = {
 }. 
 
 proc Pion1(p: Positions) =
+        get(Pion1);
+        RollDice;
+        (
         (
         (
             nask(succ(p));
@@ -180,7 +183,9 @@ proc Pion1(p: Positions) =
             move_to(pion1, smartrpgScene, x_coord(succ(p)), y_coord(succ(p)));
             get(p);
 
-            Pion1(succ(p))
+            (((p = bas3) -> OpenCoffre) +
+            (tell(Pion2);
+            Pion1(succ(p))))
         )
         +
         (
@@ -189,7 +194,10 @@ proc Pion1(p: Positions) =
             (att(sens, pion1, smartrpgScene, droit));
             move_to(pion1, smartrpgScene, x_coord(pred(p)), y_coord(pred(p)));
             get(p);
-            Pion1(pred(p))
+
+            (((p = bas3) -> OpenCoffre) +
+            (tell(Pion2);
+            Pion1(pred(p))))
         )
         )
         +
@@ -199,7 +207,10 @@ proc Pion1(p: Positions) =
             tell(succv(p));
             move_to(pion1, smartrpgScene, x_coord(succv(p)), y_coord(succv(p)));
             get(p);
-            Pion1(succv(p))
+
+            (((p = bas3) -> OpenCoffre) +
+            (tell(Pion2);
+            Pion1(succv(p))))
         )
         +
         (
@@ -207,19 +218,27 @@ proc Pion1(p: Positions) =
             tell(predv(p));
             move_to(pion1, smartrpgScene, x_coord(predv(p)), y_coord(predv(p)));
             get(p);
-            Pion1(predv(p))
+
+            (((p = bas3) -> OpenCoffre) +
+            (tell(Pion2);
+            Pion1(predv(p))))
         )
-        ).
+        )).
 
     
     Pion2(p: Positions) = 
-        (
+        get(Pion2);
+        RollDice;
+        ((
             nask(succ(p));
             tell(succ(p));
             (att(sens, pion2, smartrpgScene, reverse));
             move_to(pion2, smartrpgScene, x_coord(succ(p)), y_coord(succ(p)));
             get(p);
-            Pion2(succ(p))
+
+            (((p = bas3) -> OpenCoffre) +
+            (tell(Pion3);
+            Pion2(succ(p))))
         )
         +
         (
@@ -228,7 +247,10 @@ proc Pion1(p: Positions) =
             (att(sens, pion2, smartrpgScene, droit));
             move_to(pion2, smartrpgScene, x_coord(pred(p)), y_coord(pred(p)));
             get(p);
-            Pion2(pred(p))
+
+            (((p = bas3) -> OpenCoffre) +
+            (tell(Pion3);
+            Pion2(pred(p))))
         )
         +
         (
@@ -236,7 +258,10 @@ proc Pion1(p: Positions) =
             tell(succv(p));
             move_to(pion2, smartrpgScene, x_coord(succv(p)), y_coord(succv(p)));
             get(p);
-            Pion2(succv(p))
+
+            (((p = bas3) -> OpenCoffre) +
+            (tell(Pion3);
+            Pion2(succv(p))))
         )
         +
         (
@@ -244,18 +269,26 @@ proc Pion1(p: Positions) =
             tell(predv(p));
             move_to(pion2, smartrpgScene, x_coord(predv(p)), y_coord(predv(p)));
             get(p);
-            Pion2(predv(p))
 
-        ).
+            (((p = bas3) -> OpenCoffre) +
+            (tell(Pion3);
+            Pion2(predv(p))))
+
+        )).
     
     Pion3(p: Positions) =
-        (
+        get(Pion3);
+        RollDice;
+        ((
             nask(succ(p));
             tell(succ(p));
             (att(sens, pion3, smartrpgScene, droit));
             move_to(pion3, smartrpgScene, x_coord(succ(p)), y_coord(succ(p)));
             get(p);
-            Pion3(succ(p))
+
+            (((p = bas3) -> OpenCoffre) +
+            (tell(Pion1);
+            Pion3(succ(p))))
         )
         +
         (
@@ -264,7 +297,10 @@ proc Pion1(p: Positions) =
             (att(sens, pion3, smartrpgScene, reverse));
             move_to(pion3, smartrpgScene, x_coord(pred(p)), y_coord(pred(p)));
             get(p);
-            Pion3(pred(p))
+
+            (((p = bas3) -> OpenCoffre) +
+            (tell(Pion1);
+            Pion3(pred(p))))
         )
         +
         (
@@ -272,7 +308,10 @@ proc Pion1(p: Positions) =
             tell(succv(p));
             move_to(pion3, smartrpgScene, x_coord(succv(p)), y_coord(succv(p)));
             get(p);
-            Pion3(succv(p))
+
+            (((p = bas3) -> OpenCoffre) +
+            (tell(Pion1);
+            Pion3(succv(p))))
         )
         +
         (
@@ -280,8 +319,11 @@ proc Pion1(p: Positions) =
             tell(predv(p));
             move_to(pion3, smartrpgScene, x_coord(predv(p)), y_coord(predv(p)));
             get(p);
-            Pion3(predv(p))
-        ).
+
+            (((p = bas3) -> OpenCoffre) +
+            (tell(Pion1);
+            Pion3(predv(p))))
+        )).
     
 
     ChangeDecor = 
@@ -291,8 +333,7 @@ proc Pion1(p: Positions) =
         +
         (att(decor, decors, smartrpgScene, volcan))
         +
-        (att(decor, decors, smartrpgScene, desert))) ;
-        ChangeDecor.
+        (att(decor, decors, smartrpgScene, desert))).
 
 
     OpenCoffre = 
@@ -346,8 +387,7 @@ proc Pion1(p: Positions) =
             )
         )
         );
-        hide(de, smartrpgScene) ;
-        RollDice.
+        hide(de, smartrpgScene).
         
     Init = draw_scene(smartrpgScene);
             place_at(decors, smartrpgScene, 0, 0);
@@ -369,4 +409,18 @@ proc Pion1(p: Positions) =
             show(pion3, smartrpgScene);
             tell(haut1);
             tell(bas1);
-            tell(haut5).
+            tell(haut5);
+
+            tell(Pion1);
+            
+            Main(haut1, bas1, haut).
+
+    Main(p1: Positions, p2: Positions, p3: Positions) =
+            (
+                (
+                    Pion1(p1) ||
+                    Pion2(p2)
+                ) ||
+                Pion3(p3)
+            ) ||
+            ChangeDecor.
