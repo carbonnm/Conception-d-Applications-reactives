@@ -223,13 +223,19 @@ proc Pion1(p: Positions) =
             (tell(Pion2);
             Pion1(predv(p))))
         )
+        )
+        +
+        (
+            move_to(pion1, smartrpgScene, x_coord(p), y_coord(p));
+            tell(Pion2);
+            Pion1(p)
         )).
 
     
     Pion2(p: Positions) = 
         get(Pion2);
         RollDice;
-        ((
+        (((
             nask(succ(p));
             tell(succ(p));
             (att(sens, pion2, smartrpgScene, reverse));
@@ -251,9 +257,9 @@ proc Pion1(p: Positions) =
             (((pred(p) = mibas3) -> OpenCoffre) +
             (tell(Pion3);
             Pion2(pred(p))))
-        )
+        ))
         +
-        (
+        ((
             nask(succv(p));
             tell(succv(p));
             move_to(pion2, smartrpgScene, x_coord(succv(p)), y_coord(succv(p)));
@@ -273,13 +279,19 @@ proc Pion1(p: Positions) =
             (((predv(p) = mibas3) -> OpenCoffre) +
             (tell(Pion3);
             Pion2(predv(p))))
-
+        )
+        )
+        +
+        (
+            move_to(pion2, smartrpgScene, x_coord(p), y_coord(p));
+            tell(Pion3);
+            Pion2(p)
         )).
     
     Pion3(p: Positions) =
         get(Pion3);
         RollDice;
-        ((
+        (((
             nask(succ(p));
             tell(succ(p));
             (att(sens, pion3, smartrpgScene, droit));
@@ -301,9 +313,9 @@ proc Pion1(p: Positions) =
             (((pred(p) = mibas3) -> OpenCoffre) +
             (tell(Pion1);
             Pion3(pred(p))))
-        )
+        ))
         +
-        (
+        ((
             nask(succv(p));
             tell(succv(p));
             move_to(pion3, smartrpgScene, x_coord(succv(p)), y_coord(succv(p)));
@@ -323,6 +335,12 @@ proc Pion1(p: Positions) =
             (((predv(p) = mibas3) -> OpenCoffre) +
             (tell(Pion1);
             Pion3(predv(p))))
+        )
+        )+
+        (
+            move_to(pion3, smartrpgScene, x_coord(p), y_coord(p));
+            tell(Pion1);
+            Pion3(p)
         )).
     
 
