@@ -26,29 +26,25 @@ eqn x_coord(haut1) = 150. y_coord(haut1) = 50.
     x_coord(bas4) = 1242. y_coord(bas4) = 785.
     x_coord(bas5) = 1606. y_coord(bas5) = 785.
 
-    succ(haut1) = haut2. succ(haut2) = haut3. succ(haut3) = haut4. succ(haut4) = haut5.
-    succ(mihaut1) = mihaut2. succ(mihaut2) = mihaut3. succ(mihaut3) = mihaut4. succ(mihaut4) = mihaut5.
-    succ(mibas1) = mibas2. succ(mibas2) = mibas3. succ(mibas3) = mibas4. succ(mibas4) = mibas5.
-    succ(bas1) = bas2. succ(bas2) = bas3. succ(bas3) = bas4. succ(bas4) = bas5.
+    succ(haut1) = haut2. succ(haut2) = haut3. succ(haut3) = haut4. succ(haut4) = haut5. succ(haut5) = haut5.
+    succ(mihaut1) = mihaut2. succ(mihaut2) = mihaut3. succ(mihaut3) = mihaut4. succ(mihaut4) = mihaut5. succ(mihaut5) = mihaut5.
+    succ(mibas1) = mibas2. succ(mibas2) = mibas3. succ(mibas3) = mibas4. succ(mibas4) = mibas5. succ(mibas5) = mibas5.
+    succ(bas1) = bas2. succ(bas2) = bas3. succ(bas3) = bas4. succ(bas4) = bas5. succ(bas5) = bas5.
 
-    pred(haut2) = haut1. pred(haut3) = haut2. pred(haut4) = haut3. pred(haut5) = haut4.
-    pred(mihaut2) = mihaut1. pred(mihaut3) = mihaut2. pred(mihaut4) = mihaut3. pred(mihaut5) = mihaut4.
-    pred(mibas2) = mibas1. pred(mibas3) = mibas2. pred(mibas4) = mibas3. pred(mibas5) = mibas4.
-    pred(bas2) = bas1. pred(bas3) = bas2. pred(bas4) = bas3. pred(bas5) = bas4.
+    pred(haut1) = haut1. pred(haut2) = haut1. pred(haut3) = haut2. pred(haut4) = haut3. pred(haut5) = haut4.
+    pred(mihaut1) = mihaut1. pred(mihaut2) = mihaut1. pred(mihaut3) = mihaut2. pred(mihaut4) = mihaut3. pred(mihaut5) = mihaut4.
+    pred(mibas1) = mibas1. pred(mibas2) = mibas1. pred(mibas3) = mibas2. pred(mibas4) = mibas3. pred(mibas5) = mibas4.
+    pred(bas1) = bas1. pred(bas2) = bas1. pred(bas3) = bas2. pred(bas4) = bas3. pred(bas5) = bas4.
 
     succv(haut1) = mihaut1. succv(haut2) = mihaut2. succv(haut3) = mihaut3. succv(haut4) = mihaut4. succv(haut5) = mihaut5.
     succv(mihaut1) = mibas1. succv(mihaut2) = mibas2. succv(mihaut3) = mibas3. succv(mihaut4) = mibas4. succv(mihaut5) = mibas5.
     succv(mibas1) = bas1. succv(mibas2) = bas2. succv(mibas3) = bas3. succv(mibas4) = bas4. succv(mibas5) = bas5.
+    succv(bas1) = bas1. succv(bas2) = bas2. succv(bas3) = bas3. succv(bas4) = bas4. succv(bas5) = bas5.
 
+    predvt(haut1) = haut1. predv(haut2) = haut2. predv(haut3) = haut3. predv(haut4) = haut4. predv(haut5) = haut5.
     predv(mihaut1) = haut1. predv(mihaut2) = haut2. predv(mihaut3) = haut3. predv(mihaut4) = haut4. predv(mihaut5) = haut5. 
     predv(mibas1) = mihaut1. predv(mibas2) = mihaut2. predv(mibas3) = mihaut3. predv(mibas4) = mihaut4. predv(mibas5) = mihaut5.
     predv(bas1) = mibas1. predv(bas2) = mibas2. predv(bas3) = mibas3. predv(bas4) = mibas4. predv(bas5) = mibas5.
-
-    succ(haut5) = haut4. succ (mihaut5) = mihaut4. succ(mibas5) = mibas4. succ(bas5) = bas4.
-    pred(haut1) = haut2. pred(mihaut1) = mihaut2. pred(mibas1) = mibas2. pred(bas1) = bas2.
-
-    succv(bas1) = mibas1. succv(bas2) = mibas2. succv(bas3) = mibas3. succv(bas4) = mibas4. succv(bas5) = mibas5.
-    predv(haut1) = mihaut1. predv(haut2) = mihaut2. predv(haut3) = mihaut3. predv(haut4) = mihaut4. predv(haut5) = mihaut5.
 
 scene smartrpgScene = {
     size = (1920, 1080).
@@ -294,7 +290,7 @@ proc Pion1(p: Positions) =
         (((
             nask(succ(p));
             tell(succ(p));
-            (att(sens, pion3, smartrpgScene, droit));
+            (att(sens, pion3, smartrpgScene, reverse));
             move_to(pion3, smartrpgScene, x_coord(succ(p)), y_coord(succ(p)));
             get(p);
 
@@ -306,7 +302,7 @@ proc Pion1(p: Positions) =
         (
             nask(pred(p));
             tell(pred(p));
-            (att(sens, pion3, smartrpgScene, reverse));
+            (att(sens, pion3, smartrpgScene, droit));
             move_to(pion3, smartrpgScene, x_coord(pred(p)), y_coord(pred(p)));
             get(p);
 
