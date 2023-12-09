@@ -294,7 +294,7 @@ proc Pion1(p: Positions) =
         (((
             nask(succ(p));
             tell(succ(p));
-            (att(sens, pion3, smartrpgScene, droit));
+            (att(sens, pion3, smartrpgScene, reverse));
             move_to(pion3, smartrpgScene, x_coord(succ(p)), y_coord(succ(p)));
             get(p);
 
@@ -306,7 +306,7 @@ proc Pion1(p: Positions) =
         (
             nask(pred(p));
             tell(pred(p));
-            (att(sens, pion3, smartrpgScene, reverse));
+            (att(sens, pion3, smartrpgScene, droit));
             move_to(pion3, smartrpgScene, x_coord(pred(p)), y_coord(pred(p)));
             get(p);
 
