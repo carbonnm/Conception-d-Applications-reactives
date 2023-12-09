@@ -41,7 +41,7 @@ eqn x_coord(haut1) = 150. y_coord(haut1) = 50.
     succv(mibas1) = bas1. succv(mibas2) = bas2. succv(mibas3) = bas3. succv(mibas4) = bas4. succv(mibas5) = bas5.
     succv(bas1) = bas1. succv(bas2) = bas2. succv(bas3) = bas3. succv(bas4) = bas4. succv(bas5) = bas5.
 
-    predvt(haut1) = haut1. predv(haut2) = haut2. predv(haut3) = haut3. predv(haut4) = haut4. predv(haut5) = haut5.
+    predv(haut1) = haut1. predv(haut2) = haut2. predv(haut3) = haut3. predv(haut4) = haut4. predv(haut5) = haut5.
     predv(mihaut1) = haut1. predv(mihaut2) = haut2. predv(mihaut3) = haut3. predv(mihaut4) = haut4. predv(mihaut5) = haut5. 
     predv(mibas1) = mihaut1. predv(mibas2) = mihaut2. predv(mibas3) = mihaut3. predv(mibas4) = mihaut4. predv(mibas5) = mihaut5.
     predv(bas1) = mibas1. predv(bas2) = mibas2. predv(bas3) = mibas3. predv(bas4) = mibas4. predv(bas5) = mibas5.
